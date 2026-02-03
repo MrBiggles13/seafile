@@ -227,7 +227,9 @@ services:
       - no-new-privileges:true
     cap_drop:
       - ALL
-
+    read_only: true
+    tmpfs:
+      - /tmp
 
 networks:
   backend:
@@ -243,3 +245,4 @@ volumes:
   seafile-data:
   prom-data:
   grafana-data:
+  alertmanager-data:
