@@ -41,6 +41,8 @@ Internet → Cloudflare → Tunnel → Nginx → Seafile stack
 - Docker + Compose
 - 4–8 GB RAM
 
+`sysctl -w vm.max_map_count=262144` #run as root
+
 ## Install
 `curl -fsSL https://get.docker.com | sh`
 
