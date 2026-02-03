@@ -96,7 +96,7 @@ Prometheus + Grafana + Alertmanager included.
 # 📁 Structure
 compose/
 scripts/
-docs/
+image/
 
 ---
 
