@@ -4,37 +4,97 @@
 ![Security](https://img.shields.io/badge/security-hardened-critical)
 ![License](https://img.shields.io/badge/license-internal-lightgrey)
 
-# Seafile Appliance – Hardened + Monitoring Bundle (v1)
+# Seafile Zero-Trust Appliance
 
-This bundle adds:
-- Hardening defaults for Docker Compose services
-- Prometheus + Grafana monitoring stack
-- Exporters: node-exporter, cAdvisor, Blackbox exporter
-- Basic alerting rules (Prometheus rule evaluation)
-- Grafana provisioning (datasource + starter dashboards)
-- Clamdscan integrated within the Seafile image (docker build -t seafile-pro-mc-clamav:11.0 ./image)
+Self-hosted, secure file collaboration appliance built around Seafile Pro.
 
-## How to use
-1) Copy this bundle next to your existing `compose/` folder (or merge).
-2) Adjust `.env` values in `compose/.env` (see env.example).
-3) Start:
-   ```bash
-   cd compose
-   docker compose up -d
-   ```
-4) Access Grafana (internal only). If you want to access it through Cloudflare Tunnel, add a second hostname + ingress for `grafana.<domain>`.
+Includes:
+- Seafile Pro
+- Elasticsearch (search)
+- ClamAV (antivirus)
+- Nginx (reverse proxy)
+- Cloudflare Tunnel (zero-trust publishing)
+- Prometheus + Grafana (monitoring)
+- Alertmanager (alerting)
+- SSO (Entra ID / Okta)
 
-## Notes
-- This is designed for a "no inbound ports" zero-trust deployment. No ports are published by default. This deployment is using cloudflared.
-- Alerts are evaluated in Prometheus. You can integrate Alertmanager later (recommended).
-- To use the latest Seafile Pro docker image, you need to login to Seafile's private repository and pull the Seafile image
-  `docker login docker.seadrive.org`
+---
 
-## Security posture (high level)
-- Drop Linux capabilities, enable `no-new-privileges`
-- Read-only root filesystem where feasible
-- Separate internal `backend` network and `edge` network
-- Healthchecks for key services
+# 🚀 Goals
+Production-ready, secure, customer-owned deployment with:
+- Zero inbound ports
+- Zero-trust networking
+- Easy upgrades
+- Full observability
+
+---
+
+# 🏗 Architecture
+Internet → Cloudflare → Tunnel → Nginx → Seafile stack → Private Docker network
+
+---
+
+# ⚡ Quick Start
+
+## Requirements
+- Ubuntu Server 24.04 (recommended)
+- Docker + Compose
+- 4–8 GB RAM
+
+## Install
+curl -fsSL https://get.docker.com | sh
+
+git clone <repo>
+cd compose
+cp env.example .env
+docker compose up -d
+
+../scripts/healthcheck.sh
+
+---
+
+# 🌍 Publishing
+cloudflared tunnel login
+cloudflared tunnel create seafile
+
+No public ports required.
+
+---
+
+# 🔐 SSO
+Supports Entra ID, Okta, any SAML provider.
+
+Metadata:
+https://<domain>/saml/metadata/
+
+---
+
+# 📊 Monitoring
+Prometheus + Grafana + Alertmanager included.
+
+---
+
+# 🔄 Updates
+./scripts/backup.sh
+./scripts/upgrade.sh
+
+---
+
+# 💾 Backups
+./scripts/backup.sh
+
+---
+
+# 📁 Structure
+compose/
+scripts/
+docs/
+
+---
+
+# ❤️ Philosophy
+Deploy once. Sleep well.
+
 
 
 ![Version](https://img.shields.io/github/v/release/<org>/<repo>)
