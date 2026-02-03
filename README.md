@@ -42,7 +42,7 @@ Internet → Cloudflare → Tunnel → Nginx → Seafile stack
 - 4–8 GB RAM
 
 ## Install
-curl -fsSL https://get.docker.com | sh
+`curl -fsSL https://get.docker.com | sh`
 
 `git clone https://github.com/MrBiggles13/seafile.git`
 
@@ -52,7 +52,7 @@ curl -fsSL https://get.docker.com | sh
 
 `docker compose up -d`
 
-../scripts/healthcheck.sh
+`../scripts/healthcheck.sh`
 
 ---
 
