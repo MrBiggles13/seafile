@@ -44,9 +44,11 @@ Internet → Cloudflare → Tunnel → Nginx → Seafile stack
 ## Install
 `curl -fsSL https://get.docker.com | sh`
 
+`sudo usermod -aG docker $USER`
+
 `git clone https://github.com/MrBiggles13/seafile.git`
 
-`cd compose`
+`cd seafile/compose`
 
 `cp env.example .env`
 
