@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/bin/clamdscan --config-file=/etc/clamav/clamdscan.conf "$1"

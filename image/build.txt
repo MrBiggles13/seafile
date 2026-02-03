@@ -1,0 +1,1 @@
+docker build -t seafile-pro-mc-clamav:11.0 ./image
