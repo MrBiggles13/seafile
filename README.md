@@ -6,7 +6,7 @@ This bundle adds:
 - Exporters: node-exporter, cAdvisor, Blackbox exporter
 - Basic alerting rules (Prometheus rule evaluation)
 - Grafana provisioning (datasource + starter dashboards)
-- Clamscan integrated within the Seafile image (docker build -t seafile-pro-mc-clamav:11.0 ./image)
+- Clamdscan integrated within the Seafile image (docker build -t seafile-pro-mc-clamav:11.0 ./image)
 
 ## How to use
 1) Copy this bundle next to your existing `compose/` folder (or merge).
