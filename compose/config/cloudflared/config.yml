@@ -1,0 +1,10 @@
+tunnel: ${CF_TUNNEL_ID}
+credentials-file: /etc/cloudflared/${CF_TUNNEL_ID}.json
+
+ingress:
+  - hostname: ${FQDN}
+    service: http://nginx:8080
+  # Optional: publish Grafana via separate hostname
+  # - hostname: grafana.${FQDN}
+  #   service: http://grafana:3000
+  - service: http_status:404
