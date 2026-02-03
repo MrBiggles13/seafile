@@ -1,4 +1,4 @@
-FROM docker.seadrive.org/seafileltd/seafile-pro-mc:11.0-latest
+FROM docker.seadrive.org/seafileltd/seafile-pro-mc:11.0.19
 
 USER root
 
@@ -11,4 +11,5 @@ COPY seafile-clamdscan /opt/seafile/seafile-clamdscan
 
 RUN chmod +x /opt/seafile/seafile-clamdscan \
  && test -s /opt/seafile/seafile-clamdscan
+
 
