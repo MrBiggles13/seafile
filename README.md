@@ -6,6 +6,7 @@ This bundle adds:
 - Exporters: node-exporter, cAdvisor, Blackbox exporter
 - Basic alerting rules (Prometheus rule evaluation)
 - Grafana provisioning (datasource + starter dashboards)
+- Clamscan integrated within the Seafile image (docker build -t seafile-pro-mc-clamav:11.0 ./image)
 
 ## How to use
 1) Copy this bundle next to your existing `compose/` folder (or merge).
@@ -18,7 +19,7 @@ This bundle adds:
 4) Access Grafana (internal only). If you want to access it through Cloudflare Tunnel, add a second hostname + ingress for `grafana.<domain>`.
 
 ## Notes
-- This is designed for a "no inbound ports" zero-trust deployment. No ports are published by default.
+- This is designed for a "no inbound ports" zero-trust deployment. No ports are published by default. This deployment is using the Cloudflard tunnel.
 - Alerts are evaluated in Prometheus. You can integrate Alertmanager later (recommended).
 
 ## Security posture (high level)
