@@ -33,3 +33,7 @@ This bundle adds:
 - Read-only root filesystem where feasible
 - Separate internal `backend` network and `edge` network
 - Healthchecks for key services
+
+
+![Version](https://img.shields.io/github/v/release/<org>/<repo>)
+![Issues](https://img.shields.io/github/issues/<org>/<repo>)
