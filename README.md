@@ -30,7 +30,7 @@ Production-ready, secure, customer-owned deployment with:
 ---
 
 # 🏗 Architecture
-Internet → Cloudflare → Tunnel → Nginx → Seafile stack → Private Docker network
+Internet → Cloudflare → Tunnel → Nginx → Seafile stack
 
 ---
 
