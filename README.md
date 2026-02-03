@@ -101,5 +101,5 @@ Deploy once. Sleep well.
 
 
 
-![Version](https://img.shields.io/github/v/release/<org>/<repo>)
-![Issues](https://img.shields.io/github/issues/<org>/<repo>)
+![Version](https://img.shields.io/github/v/release/github.com/MrBiggles13/seafile)
+![Issues](https://img.shields.io/github/issues/github.com/MrBiggles13/seafile)
