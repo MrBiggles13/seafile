@@ -44,10 +44,13 @@ Internet → Cloudflare → Tunnel → Nginx → Seafile stack → Private Docke
 ## Install
 curl -fsSL https://get.docker.com | sh
 
-`git clone https://github.com/MrBiggles13/seafile.git
-cd compose
-cp env.example .env
-docker compose up -d`
+`git clone https://github.com/MrBiggles13/seafile.git`
+
+`cd compose`
+
+`cp env.example .env`
+
+`docker compose up -d`
 
 ../scripts/healthcheck.sh
 
