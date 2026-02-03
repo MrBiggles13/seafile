@@ -59,6 +59,8 @@ services:
     image: clamav/clamav:latest
     restart: unless-stopped
     networks: [backend]
+    volumes:
+      - clamav-db:/var/lib/clamav
     healthcheck:
       test: ["CMD-SHELL", "timeout 2 bash -c '</dev/tcp/127.0.0.1/3310' >/dev/null 2>&1 || exit 1"]
       interval: 60s
@@ -241,6 +243,7 @@ networks:
 volumes:
   db-data:
   redis-data:
+  clamav-db:
   es-data:
   seafile-data:
   prom-data:
