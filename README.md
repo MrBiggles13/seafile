@@ -58,6 +58,7 @@ Internet → Cloudflare → Tunnel → Nginx → Seafile stack
 
 # 🌍 Publishing
 cloudflared tunnel login
+
 cloudflared tunnel create seafile
 
 No public ports required.
