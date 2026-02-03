@@ -27,6 +27,8 @@ This bundle adds:
 ## Notes
 - This is designed for a "no inbound ports" zero-trust deployment. No ports are published by default. This deployment is using cloudflared.
 - Alerts are evaluated in Prometheus. You can integrate Alertmanager later (recommended).
+- To use the latest Seafile Pro docker image, you need to login to Seafile's private repository and pull the Seafile image
+  `docker login docker.seadrive.org`
 
 ## Security posture (high level)
 - Drop Linux capabilities, enable `no-new-privileges`
