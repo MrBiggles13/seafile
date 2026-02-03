@@ -1,3 +1,9 @@
+![Docker](https://img.shields.io/badge/Docker-required-blue)
+![Zero Trust](https://img.shields.io/badge/architecture-zero--trust-success)
+![Monitoring](https://img.shields.io/badge/monitoring-Prometheus%20%7C%20Grafana-orange)
+![Security](https://img.shields.io/badge/security-hardened-critical)
+![License](https://img.shields.io/badge/license-internal-lightgrey)
+
 # Seafile Appliance – Hardened + Monitoring Bundle (v1)
 
 This bundle adds:
