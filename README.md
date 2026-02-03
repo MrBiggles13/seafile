@@ -19,7 +19,7 @@ This bundle adds:
 4) Access Grafana (internal only). If you want to access it through Cloudflare Tunnel, add a second hostname + ingress for `grafana.<domain>`.
 
 ## Notes
-- This is designed for a "no inbound ports" zero-trust deployment. No ports are published by default. This deployment is using the Cloudflard tunnel.
+- This is designed for a "no inbound ports" zero-trust deployment. No ports are published by default. This deployment is using cloudflared.
 - Alerts are evaluated in Prometheus. You can integrate Alertmanager later (recommended).
 
 ## Security posture (high level)
