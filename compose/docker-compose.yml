@@ -114,11 +114,7 @@ services:
       - no-new-privileges:true
     cap_drop:
       - ALL
-    read_only: true
-    tmpfs:
-      - /tmp:mode=1777
-      - /var/cache/nginx:uid=101,gid=101
-      - /var/run:uid=101,gid=101
+    read_only: false
 
   cloudflared:
     image: cloudflare/cloudflared:latest
