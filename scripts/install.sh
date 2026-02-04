@@ -29,9 +29,11 @@ sudo mkdir -p \
 
 # Reasonable defaults for lab + most prod installs.
 # Tighten later if you want strict UID/GID ownership.
-sudo chmod 755 /opt/seafile-data /opt/seafile-mysql /opt/seafile-es /opt/seafile-redis \
+sudo chmod 755 /opt/seafile-data /opt/seafile-mysql /opt/seafile-redis \
   /opt/clamav-db /opt/prometheus-data /opt/grafana-data /opt/alertmanager-data \
   /opt/seafile-logs /opt/seafile-config /opt/seafile-nginx /opt/seafile-cloudflared /opt/seafile-monitoring
+
+sudo chmod 777 -R /opt/seafile-es
 
 # ---------- Copy config from repo to host paths ----------
 echo "[2/6] Syncing config files to /opt ..."
