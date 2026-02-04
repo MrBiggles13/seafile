@@ -70,6 +70,10 @@ services:
       retries: 10
     security_opt:
       - no-new-privileges:true
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+
 
   seafile:
     image: ${SEAFILE_IMAGE}
@@ -130,6 +134,9 @@ services:
       - no-new-privileges:true
     cap_drop:
       - ALL
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
     read_only: true
 
   # ===== Monitoring Stack =====
