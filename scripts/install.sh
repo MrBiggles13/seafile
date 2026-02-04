@@ -22,6 +22,7 @@ sudo mkdir -p \
   /opt/grafana-data \
   /opt/alertmanager-data \
   /opt/seafile-nginx \
+  /opt/seafile-nginx/templates \
   /opt/seafile-cloudflared \
   /opt/seafile-monitoring/{prometheus,grafana/provisioning,grafana/dashboards,blackbox,alertmanager}
 
