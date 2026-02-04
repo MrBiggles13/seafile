@@ -21,8 +21,6 @@ sudo mkdir -p \
   /opt/prometheus-data \
   /opt/grafana-data \
   /opt/alertmanager-data \
-  /opt/seafile-logs \
-  /opt/seafile-config \
   /opt/seafile-nginx \
   /opt/seafile-cloudflared \
   /opt/seafile-monitoring/{prometheus,grafana/provisioning,grafana/dashboards,blackbox,alertmanager}
@@ -31,14 +29,13 @@ sudo mkdir -p \
 # Tighten later if you want strict UID/GID ownership.
 sudo chmod 755 /opt/seafile-data /opt/seafile-mysql /opt/seafile-redis \
   /opt/clamav-db /opt/prometheus-data /opt/grafana-data /opt/alertmanager-data \
-  /opt/seafile-logs /opt/seafile-config /opt/seafile-nginx /opt/seafile-cloudflared /opt/seafile-monitoring
+  /opt/seafile-nginx /opt/seafile-cloudflared /opt/seafile-monitoring
 
 sudo chmod 777 -R /opt/seafile-es
 
 # ---------- Copy config from repo to host paths ----------
 echo "[2/6] Syncing config files to /opt ..."
 
-sudo rsync -a --delete ./config/seafile/        /opt/seafile-config/
 sudo rsync -a --delete ./config/nginx/          /opt/seafile-nginx/
 sudo rsync -a --delete ./config/cloudflared/    /opt/seafile-cloudflared/
 sudo rsync -a --delete ./monitoring/prometheus/ /opt/seafile-monitoring/prometheus/
