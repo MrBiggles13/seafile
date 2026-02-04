@@ -115,6 +115,9 @@ services:
     cap_drop:
       - ALL
     read_only: false
+    tmpfs:
+      - /var/cache/nginx:uid=101,gid=101
+      - /var/run:uid=101,gid=101
 
   cloudflared:
     image: cloudflare/cloudflared:latest
