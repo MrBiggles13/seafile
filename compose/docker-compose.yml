@@ -108,7 +108,7 @@ services:
     restart: unless-stopped
     depends_on: [seafile]
     volumes:
-      - /opt/seafile-nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /opt/seafile-nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - /opt/seafile-nginx/templates:/etc/nginx/templates
     networks: [edge]
     security_opt:
