@@ -32,7 +32,8 @@ sudo mkdir -p \
 sudo chmod 755 -R /opt/seafile-data /opt/seafile-mysql /opt/seafile-redis \
   /opt/clamav-db /opt/prometheus-data /opt/grafana-data /opt/alertmanager-data \
   /opt/seafile-nginx /opt/seafile-cloudflared /opt/seafile-monitoring
-
+  
+sudo chown -R 101:101 /opt/seafile-nginx/cache /opt/seafile-nginx/pid
 sudo chmod 777 -R /opt/seafile-es
 
 # ---------- Copy config from repo to host paths ----------
