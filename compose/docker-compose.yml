@@ -72,8 +72,7 @@ services:
       retries: 10
     security_opt:
       - no-new-privileges:true
-
-
+      
   seafile:
     image: ${SEAFILE_IMAGE}
     restart: unless-stopped
