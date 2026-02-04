@@ -95,8 +95,6 @@ services:
       SEAFILE_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
     volumes:
       - /opt/seafile-data:/shared
-      - /opt/seafile-config:/opt/seafile/conf
-      - /opt/seafile-logs:/opt/seafile/logs
     networks: [backend, edge]
     security_opt:
       - no-new-privileges:true
