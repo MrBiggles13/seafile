@@ -8,7 +8,7 @@ services:
       MYSQL_USER: seafile
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - db-data:/var/lib/mysql
+      - /opt/seafile-mysql:/var/lib/mysql
     networks: [backend]
     healthcheck:
       test: ["CMD-SHELL", "mariadb-admin ping -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     command: ["redis-server", "--appendonly", "yes"]
     volumes:
-      - redis-data:/data
+      - /opt/seafile-redis:/data
     networks: [backend]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -41,7 +41,7 @@ services:
       xpack.security.enabled: "false"
       ES_JAVA_OPTS: "-Xms${ES_HEAP} -Xmx${ES_HEAP}"
     volumes:
-      - es-data:/usr/share/elasticsearch/data
+      - /opt/seafile-es:/usr/share/elasticsearch/data
     networks: [backend]
     ulimits:
       memlock:
@@ -60,7 +60,7 @@ services:
     restart: unless-stopped
     networks: [backend]
     volumes:
-      - clamav-db:/var/lib/clamav
+      - /opt/clamav-db:/var/lib/clamav
     healthcheck:
       test: ["CMD-SHELL", "echo 'PING' | nc -w 5 127.0.0.1 3310 | grep -q PONG"]
       interval: 30s
@@ -89,9 +89,9 @@ services:
       SEAFILE_ADMIN_EMAIL: ${ADMIN_EMAIL}
       SEAFILE_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
     volumes:
-      - seafile-data:/shared
-      - ./config/seafile:/opt/seafile/conf
-      - ./logs:/opt/seafile/logs
+      - /opt/seafile-data:/shared
+      - /opt/seafile-config:/opt/seafile/conf
+      - /opt/seafile-logs:/opt/seafile/logs
     networks: [backend, edge]
     security_opt:
       - no-new-privileges:true
@@ -105,7 +105,7 @@ services:
     restart: unless-stopped
     depends_on: [seafile]
     volumes:
-      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /opt/seafile-nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     networks: [edge]
     security_opt:
       - no-new-privileges:true
@@ -122,7 +122,7 @@ services:
     depends_on: [nginx]
     command: tunnel --config /etc/cloudflared/config.yml run
     volumes:
-      - ./config/cloudflared:/etc/cloudflared:ro
+      - /opt/seafile-cloudflared:/etc/cloudflared:ro
     networks: [edge]
     security_opt:
       - no-new-privileges:true
@@ -139,9 +139,9 @@ services:
       - "--storage.tsdb.path=/prometheus"
       - "--storage.tsdb.retention.time=${PROMETHEUS_RETENTION}"
     volumes:
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - ./monitoring/prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
-      - prom-data:/prometheus
+      - /opt/seafile-monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - /opt/seafile-monitoring/prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - /opt/prometheus-data:/prometheus
     networks: [monitoring]
     security_opt:
       - no-new-privileges:true
@@ -159,9 +159,9 @@ services:
       GF_USERS_ALLOW_SIGN_UP: "false"
       GF_SERVER_ROOT_URL: "%(protocol)s://%(domain)s/"
     volumes:
-      - grafana-data:/var/lib/grafana
-      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
-      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - /opt/grafana-data:/var/lib/grafana
+      - /opt/seafile-monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - /opt/seafile-monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
     networks: [monitoring]
     security_opt:
       - no-new-privileges:true
@@ -201,7 +201,7 @@ services:
     image: prom/blackbox-exporter:v0.25.0
     restart: unless-stopped
     volumes:
-      - ./monitoring/blackbox/blackbox.yml:/etc/blackbox_exporter/config.yml:ro
+      - /opt/seafile-monitoring/blackbox/blackbox.yml:/etc/blackbox_exporter/config.yml:ro
     networks: [monitoring]
     security_opt:
       - no-new-privileges:true
@@ -222,8 +222,8 @@ services:
       ALERTMANAGER_SMTP_USER: ${ALERTMANAGER_SMTP_USER}
       ALERTMANAGER_SMTP_PASSWORD: ${ALERTMANAGER_SMTP_PASSWORD}
     volumes:
-      - ./monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
-      - alertmanager-data:/alertmanager
+      - /opt/seafile-monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - /opt/alertmanager-data:/alertmanager
     networks: [monitoring]
     security_opt:
       - no-new-privileges:true
@@ -239,13 +239,3 @@ networks:
   edge:
   monitoring:
     internal: true
-
-volumes:
-  db-data:
-  redis-data:
-  clamav-db:
-  es-data:
-  seafile-data:
-  prom-data:
-  grafana-data:
-  alertmanager-data:
