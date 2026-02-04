@@ -9,14 +9,51 @@ if [[ ! -f .env ]]; then
   exit 1
 fi
 
-echo "[1/4] Start stack (hardened + monitoring)..."
+# ---------- Host preparation (bind mounts) ----------
+echo "[1/6] Preparing host directories under /opt ..."
+
+sudo mkdir -p \
+  /opt/seafile-data \
+  /opt/seafile-mysql \
+  /opt/seafile-es \
+  /opt/seafile-redis \
+  /opt/clamav-db \
+  /opt/prometheus-data \
+  /opt/grafana-data \
+  /opt/alertmanager-data \
+  /opt/seafile-logs \
+  /opt/seafile-config \
+  /opt/seafile-nginx \
+  /opt/seafile-cloudflared \
+  /opt/seafile-monitoring/{prometheus,grafana/provisioning,grafana/dashboards,blackbox,alertmanager}
+
+# Reasonable defaults for lab + most prod installs.
+# Tighten later if you want strict UID/GID ownership.
+sudo chmod 755 /opt/seafile-data /opt/seafile-mysql /opt/seafile-es /opt/seafile-redis \
+  /opt/clamav-db /opt/prometheus-data /opt/grafana-data /opt/alertmanager-data \
+  /opt/seafile-logs /opt/seafile-config /opt/seafile-nginx /opt/seafile-cloudflared /opt/seafile-monitoring
+
+# ---------- Copy config from repo to host paths ----------
+echo "[2/6] Syncing config files to /opt ..."
+
+sudo rsync -a --delete ./config/seafile/        /opt/seafile-config/
+sudo rsync -a --delete ./config/nginx/          /opt/seafile-nginx/
+sudo rsync -a --delete ./config/cloudflared/    /opt/seafile-cloudflared/
+sudo rsync -a --delete ./monitoring/prometheus/ /opt/seafile-monitoring/prometheus/
+sudo rsync -a --delete ./monitoring/grafana/    /opt/seafile-monitoring/grafana/
+sudo rsync -a --delete ./monitoring/blackbox/   /opt/seafile-monitoring/blackbox/
+sudo rsync -a --delete ./monitoring/alertmanager/ /opt/seafile-monitoring/alertmanager/
+
+echo "[3/6] Building custom Seafile image (clamdscan wrapper)..."
+docker build -t "$(grep -E '^SEAFILE_IMAGE=' .env | cut -d= -f2-)" ../image
+
+echo "[4/6] Starting stack..."
 docker compose up -d
 
-echo "[2/4] Wait briefly..."
+echo "[5/6] Waiting briefly..."
 sleep 5
 
-echo "[3/4] Healthcheck..."
+echo "[6/6] Running healthcheck..."
 bash ../scripts/healthcheck.sh
 
-echo "[4/4] Done."
-echo "Grafana is internal by default. To publish it, add an additional hostname in Cloudflare and cloudflared ingress."
+echo "Install complete."
