@@ -116,6 +116,8 @@ services:
     cap_drop:
       - ALL
     read_only: true
+    tmpfs:
+      - /tmp:mode=1777
     
   cloudflared:
     image: cloudflare/cloudflared:latest
