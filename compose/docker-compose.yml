@@ -60,7 +60,9 @@ services:
   clamav:
     image: clamav/clamav:latest
     restart: unless-stopped
-    networks: [backend]
+    networks:
+      - backend
+      - egress
     volumes:
       - /opt/clamav-db:/var/lib/clamav
     healthcheck:
@@ -70,9 +72,6 @@ services:
       retries: 10
     security_opt:
       - no-new-privileges:true
-    dns:
-      - 1.1.1.1
-      - 8.8.8.8
 
 
   seafile:
@@ -246,5 +245,6 @@ networks:
   backend:
     internal: true
   edge:
+  egress:
   monitoring:
     internal: true
