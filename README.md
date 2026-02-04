@@ -54,7 +54,9 @@ Internet → Cloudflare → Tunnel → Nginx → Seafile stack
 
 `cp env.example .env`
 
-`docker compose up -d`
+`chmod +x seafile/scripts/install.sh`
+
+`./seafile/scripts/install.sh`
 
 `../scripts/healthcheck.sh`
 
