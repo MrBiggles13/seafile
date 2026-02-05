@@ -4,9 +4,8 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: seafile
-      MYSQL_USER: seafile
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_LOG_CONSOLE: true
+      MARIADB_AUTO_UPGRADE: 1
     volumes:
       - /opt/seafile-mysql:/var/lib/mysql
     networks: [backend]
