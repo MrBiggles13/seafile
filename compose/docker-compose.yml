@@ -85,6 +85,9 @@ services:
         condition: service_healthy
       clamav:
         condition: service_healthy
+    ports:
+      - "80:80"
+#     - "443:443"  # If https is enabled, cancel the comment.
     environment:
       TIME_ZONE: ${TIME_ZONE}
       DB_HOST: db
@@ -92,6 +95,7 @@ services:
       SEAFILE_SERVER_HOSTNAME: ${FQDN}
       SEAFILE_ADMIN_EMAIL: ${ADMIN_EMAIL}
       SEAFILE_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      SEAFILE_SERVER_LETSENCRYPT: false
     volumes:
       - /opt/seafile-data:/shared
     networks: [backend, edge]
