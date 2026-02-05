@@ -24,7 +24,7 @@ docker compose exec -T elasticsearch sh -lc 'curl -fsS http://localhost:9200 >/d
   && pass "Elasticsearch reachable" || fail "Elasticsearch unreachable"
 
 # ClamAV port
-docker compose exec -T seafile sh -lc 'timeout 2 bash -c "</dev/tcp/clamav/3310" >/dev/null 2>&1'   
+docker compose exec -T seafile sh -lc 'timeout 2 bash -c "</dev/tcp/clamav/3310" >/dev/null 2>&1' \
   && pass "ClamAV clamd reachable" || fail "ClamAV clamd not reachable"
 
 # confirm Seafile can reach clamd over the docker network
