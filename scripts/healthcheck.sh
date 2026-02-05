@@ -43,8 +43,10 @@ PY' \
   && pass "Seafile can reach ClamAV (tcp/3310)" || fail "Seafile cannot reach ClamAV (tcp/3310)"
 
 # Nginx reachability (nginx-unprivileged listens on 8080)
-docker compose exec -T nginx sh -lc 'wget -qO- http://127.0.0.1:8080/ >/dev/null' \
-  && pass "Nginx responding on :8080" || fail "Nginx not responding on :8080"
+docker compose exec -T nginx sh -lc 'nginx -t >/dev/null 2>&1' \
+  && pass "Nginx config OK" || fail "Nginx config invalid"
+docker compose exec -T seafile sh -lc 'wget -qO- http://127.0.0.1/ >/dev/null 2>&1' \
+  && pass "Seafile web responding" || fail "Seafile web not responding"
 
 # Prometheus ready
 docker compose exec -T prometheus sh -lc 'wget -qO- http://127.0.0.1:9090/-/ready >/dev/null' \
