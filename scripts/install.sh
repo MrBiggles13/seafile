@@ -22,18 +22,15 @@ sudo mkdir -p \
   /opt/grafana-data \
   /opt/alertmanager-data \
   /opt/seafile-nginx \
-  /opt/seafile-nginx/cache \
-  /opt/seafile-nginx/pid \
   /opt/seafile-cloudflared \
   /opt/seafile-monitoring/{prometheus,grafana/provisioning,grafana/dashboards,blackbox,alertmanager}
 
 # Reasonable defaults for lab + most prod installs.
 # Tighten later if you want strict UID/GID ownership.
-sudo chmod 755 -R /opt/seafile-data /opt/seafile-mysql /opt/seafile-redis \
+sudo chmod 755 /opt/seafile-data /opt/seafile-mysql /opt/seafile-redis \
   /opt/clamav-db /opt/prometheus-data /opt/grafana-data /opt/alertmanager-data \
   /opt/seafile-nginx /opt/seafile-cloudflared /opt/seafile-monitoring
-  
-sudo chown -R 101:101 /opt/seafile-nginx/cache /opt/seafile-nginx/pid
+
 sudo chmod 777 -R /opt/seafile-es
 
 # ---------- Copy config from repo to host paths ----------
