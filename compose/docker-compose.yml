@@ -97,8 +97,6 @@ services:
     networks: [backend, edge]
     security_opt:
       - no-new-privileges:true
-    cap_drop:
-      - ALL
     # Seafile needs write access to its volumes; keep rootfs writable (read_only often breaks upgrades/init scripts).
     # read_only: true
 
