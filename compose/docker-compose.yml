@@ -60,9 +60,7 @@ services:
   clamav:
     image: clamav/clamav:latest
     restart: unless-stopped
-    networks:
-      - backend
-      - egress
+    networks: [backend, egress]
     volumes:
       - /opt/clamav-db:/var/lib/clamav
     healthcheck:
