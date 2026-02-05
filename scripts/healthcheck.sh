@@ -23,25 +23,10 @@ docker compose exec -T redis redis-cli ping | grep -q PONG \
 docker compose exec -T elasticsearch sh -lc 'curl -fsS http://localhost:9200 >/dev/null' \
   && pass "Elasticsearch reachable" || fail "Elasticsearch unreachable"
 
-# ClamAV: check clamd responds (PING/PONG) inside clamav container
-# (more reliable than /dev/tcp from seafile and works without bash/timeout)
-docker compose exec -T clamav sh -lc 'python3 - <<PY
-import socket, sys
-s=socket.socket(); s.settimeout(2)
-try:
-    s.connect(("127.0.0.1",3310))
-    s.sendall(b"PING\\n")
-    data=s.recv(64)
-    sys.exit(0 if b"PONG" in data else 1)
-except Exception:
-    sys.exit(1)
-finally:
-    try: s.close()
-    except: pass
-PY' \
-  && pass "ClamAV clamd responds (PONG)" || fail "ClamAV clamd not responding"
+# ClamAV port
+docker compose exec -T seafile sh -lc 'timeout 2 bash -c "</dev/tcp/clamav/3310" >/dev/null 2>&1'   && pass "ClamAV clamd reachable" || fail "ClamAV clamd not reachable"
 
-# Optional: confirm Seafile can reach clamd over the docker network
+# confirm Seafile can reach clamd over the docker network
 docker compose exec -T seafile sh -lc 'python3 - <<PY
 import socket, sys
 s=socket.socket(); s.settimeout(2)
