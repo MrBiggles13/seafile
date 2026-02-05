@@ -103,20 +103,20 @@ services:
     # read_only: true
 
   nginx:
-    image: nginx:1.27
+    image: nginxinc/nginx-unprivileged:1.29-alpine
     restart: unless-stopped
     depends_on: [seafile]
+    networks: [edge]
+    read_only: true
+    tmpfs:
+      - /tmp:mode=1777
     volumes:
       - /opt/seafile-nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /opt/seafile-nginx/cache:/var/cache/nginx
-      - /opt/seafile-nginx/pid:/var/run
-    networks: [edge]
     security_opt:
       - no-new-privileges:true
     cap_drop:
       - ALL
-    tmpfs:
-      - /tmp:mode=1777
+
     
   cloudflared:
     image: cloudflare/cloudflared:latest
