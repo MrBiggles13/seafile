@@ -166,6 +166,8 @@ services:
       - /opt/seafile-monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
       - /opt/seafile-monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
     networks: [monitoring]
+    ports:
+      - "3000:3000"
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -180,6 +182,8 @@ services:
     volumes:
       - /:/host:ro,rslave
     networks: [monitoring]
+    ports:
+      - "9100:9100"
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -195,6 +199,8 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     networks: [monitoring]
+    ports:
+      - "8080:8080"
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -228,6 +234,8 @@ services:
       - /opt/seafile-monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
       - /opt/alertmanager-data:/alertmanager
     networks: [monitoring]
+    ports:
+      - "9093:9093"
     security_opt:
       - no-new-privileges:true
     cap_drop:
