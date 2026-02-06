@@ -22,7 +22,7 @@ This project provides a complete, opinionated stack that can be deployed on-prem
 - **Prometheus** – metrics collection  
 - **Grafana** – dashboards & visualization  
 - **Alertmanager** – alerting & notifications  
-- **SSO** – Entra ID (Azure AD), Okta, and other SAML providers  
+- **[SSO](https://github.com/MrBiggles13/seafile/blob/main/SAML_README.md)** – Entra ID (Azure AD), Okta, and other SAML providers  
 
 ---
 
