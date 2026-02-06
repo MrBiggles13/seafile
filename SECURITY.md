@@ -7,7 +7,7 @@ Only the `main` branch and the latest tagged release are supported.
 Please **do not open public issues** for security vulnerabilities.
 
 Contact:
-- Email: security@your-domain.example
+- Email: erlaubt_sulfid_77@icloud.com
 
 Include:
 - Description of the issue
