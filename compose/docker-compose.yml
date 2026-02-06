@@ -144,6 +144,8 @@ services:
       - /opt/seafile-monitoring/prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
       - /opt/prometheus-data:/prometheus
     networks: [monitoring]
+    ports:
+      - "9090:9090"
     security_opt:
       - no-new-privileges:true
     cap_drop:
