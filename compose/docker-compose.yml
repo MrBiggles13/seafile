@@ -95,8 +95,6 @@ services:
     networks: [backend, edge]
     security_opt:
       - no-new-privileges:true
-    # Seafile needs write access to its volumes; keep rootfs writable (read_only often breaks upgrades/init scripts).
-    # read_only: true
   
   nginx:
     image: nginxinc/nginx-unprivileged:1.29-alpine
