@@ -164,7 +164,7 @@ services:
       - grafana_data:/var/lib/grafana
       - /opt/seafile-monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
       - /opt/seafile-monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
-    networks: [monitoring]
+    networks: [monitoring, edge]
     ports:
       - "3000:3000"
     security_opt:
@@ -226,7 +226,7 @@ services:
     volumes:
       - /opt/seafile-monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
       - alertmanager_data:/alertmanager
-    networks: [monitoring]
+    networks: [monitoring, egress]
     ports:
       - "9093:9093"
     security_opt:
