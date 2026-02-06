@@ -222,8 +222,6 @@ services:
       - /opt/seafile-monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
       - alertmanager_data:/alertmanager
     networks: [monitoring, egress]
-    ports:
-      - "9093:9093"
     security_opt:
       - no-new-privileges:true
     cap_drop:
