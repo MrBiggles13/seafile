@@ -224,15 +224,9 @@ services:
     command:
       - "--config.file=/etc/alertmanager/alertmanager.yml"
       - "--storage.path=/alertmanager"
-    environment:
-      ALERTMANAGER_SMTP_HOST: ${ALERTMANAGER_SMTP_HOST}
-      ALERTMANAGER_SMTP_FROM: ${ALERTMANAGER_SMTP_FROM}
-      ALERTMANAGER_SMTP_TO: ${ALERTMANAGER_SMTP_TO}
-      ALERTMANAGER_SMTP_USER: ${ALERTMANAGER_SMTP_USER}
-      ALERTMANAGER_SMTP_PASSWORD: ${ALERTMANAGER_SMTP_PASSWORD}
     volumes:
       - /opt/seafile-monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
-      - /opt/alertmanager-data:/alertmanager
+      - alertmanager_data:/alertmanager
     networks: [monitoring]
     ports:
       - "9093:9093"
@@ -255,3 +249,4 @@ networks:
 volumes:
   prometheus_data: {}
   grafana_data: {}
+  alertmanager_data: {}
