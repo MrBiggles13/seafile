@@ -142,8 +142,6 @@ services:
       - /opt/seafile-monitoring/prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
       - prometheus_data:/prometheus
     networks: [monitoring]
-    ports:
-      - "9090:9090"
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -178,8 +176,6 @@ services:
     volumes:
       - /:/host:ro,rslave
     networks: [monitoring]
-    ports:
-      - "9100:9100"
     security_opt:
       - no-new-privileges:true
     cap_drop:
