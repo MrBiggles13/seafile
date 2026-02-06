@@ -53,6 +53,7 @@ Internet → Cloudflare → Tunnel → Nginx → Seafile Stack
 - Docker Engine
 - Docker Compose (v2)
 - 4–8 GB RAM
+- [Seafile prerequisites](https://manual.seafile.com/11.0/docker/pro-edition/deploy_seafile_pro_with_docker/)
 
 ### Installation
 
