@@ -82,9 +82,6 @@ services:
         condition: service_healthy
       clamav:
         condition: service_healthy
-    ports:
-      - "80:80"
-#     - "443:443"  # If https is enabled, cancel the comment.
     environment:
       TIME_ZONE: ${TIME_ZONE}
       DB_HOST: db
@@ -167,8 +164,6 @@ services:
       - /opt/seafile-monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
       - /opt/seafile-monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
     networks: [monitoring, edge]
-    ports:
-      - "3000:3000"
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -200,8 +195,6 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     networks: [monitoring]
-    ports:
-      - "8080:8080"
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -212,7 +205,7 @@ services:
     restart: unless-stopped
     volumes:
       - /opt/seafile-monitoring/blackbox/blackbox.yml:/etc/blackbox_exporter/config.yml:ro
-    networks: [monitoring]
+    networks: [monitoring, backend, edge]
     security_opt:
       - no-new-privileges:true
     cap_drop:
