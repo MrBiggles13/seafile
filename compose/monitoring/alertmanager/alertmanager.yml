@@ -1,9 +1,10 @@
 global:
   resolve_timeout: 5m
-  smtp_smarthost: '${ALERTMANAGER_SMTP_HOST}'
-  smtp_from: '${ALERTMANAGER_SMTP_FROM}'
-  smtp_auth_username: '${ALERTMANAGER_SMTP_USER}'
-  smtp_auth_password: '${ALERTMANAGER_SMTP_PASSWORD}'
+  smtp_smarthost: 'smtp.example.com:587'
+  smtp_from: 'alerts@example.com'
+  smtp_to: 'it-ops@example.com'
+  smtp_auth_username: 'alerts@example.com'
+  smtp_auth_password: 'ChangeMe-SMTP!'
   smtp_require_tls: true
 
 route:
