@@ -6,96 +6,139 @@
 
 # Seafile Zero-Trust Appliance
 
-Self-hosted, secure file collaboration appliance built around Seafile Pro.
+A **self-hosted, hardened file collaboration appliance** built around **Seafile Pro**, designed for **customer-owned, zero-trust deployments**.
 
-Includes:
-- Seafile Pro
-- Elasticsearch (search)
-- ClamAV (antivirus)
-- Nginx (reverse proxy)
-- Cloudflare Tunnel (zero-trust publishing)
-- Prometheus + Grafana (monitoring)
-- Alertmanager (alerting)
-- SSO (Entra ID / Okta)
+This project provides a complete, opinionated stack that can be deployed on-prem or in private infrastructure without exposing inbound ports.
 
 ---
 
-# 🚀 Goals
-Production-ready, secure, customer-owned deployment with:
-- Zero inbound ports
-- Zero-trust networking
-- Easy upgrades
-- Full observability
+## ✨ What’s included
+
+- **Seafile Pro** – enterprise file sync & collaboration  
+- **Elasticsearch** – full-text search  
+- **ClamAV** – antivirus scanning  
+- **Nginx** – internal reverse proxy  
+- **Cloudflare Tunnel** – zero-trust publishing (no public ports)  
+- **Prometheus** – metrics collection  
+- **Grafana** – dashboards & visualization  
+- **Alertmanager** – alerting & notifications  
+- **SSO** – Entra ID (Azure AD), Okta, and other SAML providers  
 
 ---
 
-# 🏗 Architecture
-Internet → Cloudflare → Tunnel → Nginx → Seafile stack
+## 🎯 Goals
+
+This appliance is built with the following principles in mind:
+
+- **Zero inbound ports**
+- **Zero-trust networking**
+- **Customer-owned infrastructure & data**
+- **Predictable upgrades**
+- **Full observability & alerting**
+- **Security-first defaults**
 
 ---
 
-# ⚡ Quick Start
+## 🏗 Architecture
 
-## Requirements
-- Ubuntu Server 24.04 (recommended)
-- Docker + Compose
+Internet → Cloudflare → Tunnel → Nginx → Seafile Stack
+
+---
+
+## ⚡ Quick Start
+
+### Requirements
+
+- Ubuntu Server 24.04 LTS
+- Docker Engine
+- Docker Compose (v2)
 - 4–8 GB RAM
 
+### Installation
 
+```bash
+git clone https://github.com/MrBiggles13/seafile.git
+cd seafile
+./scripts/install.sh
+```
 
-## Install
-`git clone https://github.com/MrBiggles13/seafile.git`
+Verify deployment:
 
-`./seafile/scripts/install.sh`
-
-`../scripts/healthcheck.sh`
+```bash
+./scripts/healthcheck.sh
+```
 
 ---
 
-# 🌍 Publishing
+## 🌍 Publishing (Zero-Trust)
+
+Publishing is done exclusively via Cloudflare Tunnel.
+
+```bash
 cloudflared tunnel login
-
 cloudflared tunnel create seafile
+```
 
-No public ports required.
-
----
-
-# 🔐 SSO
-Supports Entra ID, Okta, any SAML provider.
-
-Metadata:
-https://<domain>/saml/metadata/
+No public ports are exposed.
 
 ---
 
-# 📊 Monitoring
-Prometheus + Grafana + Alertmanager included.
+## 🔐 Single Sign-On (SSO)
+
+Supports any SAML 2.0 compatible IdP:
+
+- Entra ID (Azure AD)
+- Okta
+- Other SAML providers
+
+Metadata endpoint:
+
+```
+https://<your-domain>/saml/metadata/
+```
 
 ---
 
-# 🔄 Updates
+## 📊 Monitoring & Alerting
+
+Includes Prometheus, Grafana, and Alertmanager with preconfigured dashboards and alerts.
+
+---
+
+## 🔄 Updates & Maintenance
+
+```bash
 ./scripts/backup.sh
 ./scripts/upgrade.sh
+```
 
 ---
 
-# 💾 Backups
+## 💾 Backups
+
+```bash
 ./scripts/backup.sh
+```
 
 ---
 
-# 📁 Structure
+## 📁 Repository Structure
+
+```
 compose/
 scripts/
 image/
+```
 
 ---
 
-# ❤️ Philosophy
-Deploy once. Sleep well.
+## 🧭 Philosophy
 
+> Deploy once. Sleep well.
 
+Single-tenant, customer-owned by design.
 
-![Version](https://img.shields.io/github/v/release/github.com/MrBiggles13/seafile.git)
-![Issues](https://img.shields.io/github/issues/github.com/MrBiggles13/seafile.git)
+---
+
+![Version](https://img.shields.io/github/v/release/MrBiggles13/seafile)
+![Issues](https://img.shields.io/github/issues/MrBiggles13/seafile)
