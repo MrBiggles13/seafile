@@ -18,7 +18,6 @@ sudo mkdir -p \
   /opt/seafile-es \
   /opt/seafile-redis \
   /opt/clamav-db \
-  /opt/alertmanager-data \
   /opt/seafile-nginx \
   /opt/seafile-cloudflared \
   /opt/seafile-monitoring/{prometheus,grafana/provisioning,grafana/dashboards,blackbox,alertmanager}
