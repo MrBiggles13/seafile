@@ -48,7 +48,7 @@ echo "[4/6] Starting stack..."
 docker compose up -d
 
 echo "[5/6] Waiting briefly..."
-sleep 5
+sleep 10
 
 echo "[6/6] Running healthcheck..."
 bash ../scripts/healthcheck.sh
