@@ -41,20 +41,10 @@ Internet → Cloudflare → Tunnel → Nginx → Seafile stack
 - Docker + Compose
 - 4–8 GB RAM
 
-`sysctl -w vm.max_map_count=262144` #run as root
+
 
 ## Install
-`curl -fsSL https://get.docker.com | sh`
-
-`sudo usermod -aG docker $USER`
-
 `git clone https://github.com/MrBiggles13/seafile.git`
-
-`cd seafile/compose`
-
-`cp env.example .env`
-
-`chmod +x seafile/scripts/install.sh`
 
 `./seafile/scripts/install.sh`
 
