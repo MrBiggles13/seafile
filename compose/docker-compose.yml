@@ -205,7 +205,7 @@ services:
     restart: unless-stopped
     volumes:
       - /opt/seafile-monitoring/blackbox/blackbox.yml:/etc/blackbox_exporter/config.yml:ro
-    networks: [monitoring, backend, edge]
+    networks: [monitoring, edge]
     security_opt:
       - no-new-privileges:true
     cap_drop:
