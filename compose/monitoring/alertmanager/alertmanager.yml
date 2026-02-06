@@ -2,7 +2,6 @@ global:
   resolve_timeout: 5m
   smtp_smarthost: 'smtp.example.com:587'
   smtp_from: 'alerts@example.com'
-  smtp_to: 'it-ops@example.com'
   smtp_auth_username: 'alerts@example.com'
   smtp_auth_password: 'ChangeMe-SMTP!'
   smtp_require_tls: true
