@@ -16,7 +16,7 @@ route:
 receivers:
   - name: 'email-default'
     email_configs:
-      - to: '${ALERTMANAGER_SMTP_TO}'
+      - to: 'it-ops@example.com'
         send_resolved: true
 
 # Optional webhook receiver example:
