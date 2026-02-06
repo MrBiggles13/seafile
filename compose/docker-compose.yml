@@ -142,7 +142,7 @@ services:
     volumes:
       - /opt/seafile-monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - /opt/seafile-monitoring/prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
-      - /opt/prometheus-data:/prometheus
+      - prometheus_data:/prometheus
     networks: [monitoring]
     ports:
       - "9090:9090"
@@ -162,7 +162,7 @@ services:
       GF_USERS_ALLOW_SIGN_UP: "false"
       GF_SERVER_ROOT_URL: "%(protocol)s://%(domain)s/"
     volumes:
-      - /opt/grafana-data:/var/lib/grafana
+      - grafana_data:/var/lib/grafana
       - /opt/seafile-monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
       - /opt/seafile-monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
     networks: [monitoring]
@@ -243,3 +243,7 @@ networks:
   egress:
   monitoring:
     internal: true
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
