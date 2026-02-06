@@ -69,7 +69,7 @@ services:
       retries: 10
     security_opt:
       - no-new-privileges:true
-      
+  
   seafile:
     image: ${SEAFILE_IMAGE}
     restart: unless-stopped
@@ -100,7 +100,7 @@ services:
       - no-new-privileges:true
     # Seafile needs write access to its volumes; keep rootfs writable (read_only often breaks upgrades/init scripts).
     # read_only: true
-
+  
   nginx:
     image: nginxinc/nginx-unprivileged:1.29-alpine
     restart: unless-stopped
@@ -115,8 +115,7 @@ services:
       - no-new-privileges:true
     cap_drop:
       - ALL
-
-    
+  
   cloudflared:
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
