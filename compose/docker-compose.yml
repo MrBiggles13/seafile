@@ -101,8 +101,6 @@ services:
     restart: unless-stopped
     depends_on: [seafile]
     networks: [edge]
-    ports:
-      - "8080:8080"
     read_only: true
     tmpfs:
       - /tmp:mode=1777
